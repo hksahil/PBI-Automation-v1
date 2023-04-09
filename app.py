@@ -63,10 +63,15 @@ if ss:
                                     visualContainer['width'] = 1280
                                     # Change config
                                     config = json.loads(visualContainer['config'])
+
+                                    # Parallelogram to Rectangle
+                                    # Replace "parallelogram" with "rectangle" in the "config" key's value
+                                    config["singleVisual"]["objects"]["shape"][0]["properties"]["tileShape"]["expr"]["Literal"]["Value"] = "'rectangle'"
+
                                     for layout in config['layouts']:
                                         layout['position']['x'] = 0
                                         layout['position']['height'] = 65
-                                        layout['position']['width'] = 1280
+                                        layout['position']['width'] = 1280 
                                     visualContainer['config'] = json.dumps(config)
 
                                 # Changing z of logo
