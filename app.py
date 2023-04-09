@@ -70,13 +70,26 @@ if ss:
                                     visualContainer['config'] = json.dumps(config)
 
                                 # Changing z of logo
-                                # if visualContainer['y'] == 0 and "Pepsico_4659666136978873.png" in visualContainer['config']:
-                                #     visualContainer['z'] = 500
-                                #     # Change config
-                                #     config = json.loads(visualContainer['config'])
-                                #     for layout in config['layouts']:
-                                #         layout['position']['z'] = 0
-                                #     visualContainer['config'] = json.dumps(config)
+                                if visualContainer['y'] == 0 and "Pepsico_4659666136978873.png" in visualContainer['config']:
+                                    visualContainer['z'] = 500
+                                    # Change config
+                                    config = json.loads(visualContainer['config'])
+                                    for layout in config['layouts']:
+                                        layout['position']['z'] = 500
+                                    visualContainer['config'] = json.dumps(config)
+
+                                # Changing attributes of groups
+                                if visualContainer['y'] == 0 and "singleVisualGroup" in visualContainer['config']:
+                                    visualContainer['x'] = 0
+                                    visualContainer['height'] = 65
+                                    visualContainer['width'] = 1280
+                                    # Change config
+                                    config = json.loads(visualContainer['config'])
+                                    for layout in config['layouts']:
+                                        layout['position']['x'] = 0
+                                        layout['position']['height'] = 65
+                                        layout['position']['width'] = 1280
+                                    visualContainer['config'] = json.dumps(config)
                         
                         # New Layout file
                         with open('updated_file.json', 'w') as f:
