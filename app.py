@@ -32,7 +32,7 @@ if ss:
                             # Loop through each visualContainer
                             for visualContainer in section['visualContainers']:
                                 # Check if y is 0 and config contains "parallelogram"
-                                if visualContainer['y'] == 0 and ( "parallelogram" in visualContainer['config'] or "rectangle" in visualContainer['config']) :
+                                if "parallelogram" in visualContainer['config'] :
                                     # Remove the visualContainer
                                     section['visualContainers'].remove(visualContainer)
                     except:
