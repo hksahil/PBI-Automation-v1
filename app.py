@@ -28,14 +28,13 @@ if ss:
                 if name == 'Report/Layout':
                     # Read the contents of the layout file
                     data = source_zip.read(name).decode('utf-16 le')
-                    print(data,'data')
 
                     # Old layout file
                     with open('og_file.json', 'w') as f:
                         a=json.loads(data)
                         json.dump(a, f)
                     try:
-                        # Loop through each section
+                        ##### Removing certain elements
                         data=json.loads(data)
                         for section in data['sections']:
                             print(section)
@@ -52,7 +51,34 @@ if ss:
                             # Replace the old list with the new list
                             section['visualContainers'] = new_visual_containers
                         
-                        # New layout file
+                        ##### Changing attributes of certain elements
+                        for section in data['sections']:
+                            for visualContainer in section['visualContainers']:
+
+                                # Changing Header rectangle
+                                if visualContainer['y'] == 0 and "#004E90" in visualContainer['config'] :
+                                    # Change x, height, and width
+                                    visualContainer['x'] = 0
+                                    visualContainer['height'] = 65
+                                    visualContainer['width'] = 1280
+                                    # Change config
+                                    config = json.loads(visualContainer['config'])
+                                    for layout in config['layouts']:
+                                        layout['position']['x'] = 0
+                                        layout['position']['height'] = 65
+                                        layout['position']['width'] = 1280
+                                    visualContainer['config'] = json.dumps(config)
+
+                                # Changing z of logo
+                                # if visualContainer['y'] == 0 and "Pepsico_4659666136978873.png" in visualContainer['config']:
+                                #     visualContainer['z'] = 500
+                                #     # Change config
+                                #     config = json.loads(visualContainer['config'])
+                                #     for layout in config['layouts']:
+                                #         layout['position']['z'] = 0
+                                #     visualContainer['config'] = json.dumps(config)
+                        
+                        # New Layout file
                         with open('updated_file.json', 'w') as f:
                             json.dump(data, f)
                     
