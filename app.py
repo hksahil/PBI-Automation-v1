@@ -26,15 +26,17 @@ if ss:
                     # Read the contents of the layout file
                     data = source_zip.read(name).decode('utf-16 le')
 
+                    try:
                     # Loop through each section
-                    for section in data['sections']:
-                        # Loop through each visualContainer
-                        for visualContainer in section['visualContainers']:
-                            # Check if y is 0 and config contains "parallelogram"
-                            if visualContainer['y'] == 0 and ( "parallelogram" in visualContainer['config'] or "rectangle" in visualContainer['config']) :
-                                # Remove the visualContainer
-                                section['visualContainers'].remove(visualContainer)
-
+                        for section in data['sections']:
+                            # Loop through each visualContainer
+                            for visualContainer in section['visualContainers']:
+                                # Check if y is 0 and config contains "parallelogram"
+                                if visualContainer['y'] == 0 and ( "parallelogram" in visualContainer['config'] or "rectangle" in visualContainer['config']) :
+                                    # Remove the visualContainer
+                                    section['visualContainers'].remove(visualContainer)
+                    except:
+                        print('hi')
                     # Add the manipulated layout data to the destination zip file
                     destination_zip.writestr(name, data.encode('utf-16 le'))
                 
