@@ -41,8 +41,10 @@ if ss:
                             # Create a new list of visual containers that don't meet the condition
                             new_visual_containers = []
                             for visualContainer in section['visualContainers']:
-                                # Check if y is 0 and config contains "parallelogram" or "rectangle"
-                                if visualContainer['y'] != 0 or ("parallelogram" not in visualContainer['config'] and "rectangle" not in visualContainer['config']):
+                                # Check if y is 0 and x is >500 and config contains "parallelogram" or "rectangle"
+                                if visualContainer['y'] == 0 and visualContainer['x'] > 500 and ("parallelogram" in visualContainer['config'] or "rectangle" in visualContainer['config']):
+                                    continue
+                                else:
                                     new_visual_containers.append(visualContainer)
 
                             # Replace the old list with the new list
