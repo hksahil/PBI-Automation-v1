@@ -19,7 +19,7 @@ if ss:
             for name in source_zip.namelist():
 
                 # Skip the Security Binding file
-                if name=='SecurityBindings':
+                if name == 'SecurityBindings':
                     continue
 
                 # Manipulate the Layout file
@@ -30,22 +30,25 @@ if ss:
 
                     # Old layout file
                     with open('og_file.json', 'w') as f:
-                            a=json.loads(data)
-                            json.dump(a, f)
+                        a=json.loads(data)
+                        json.dump(a, f)
                     try:
-                    # Loop through each section
+                        # Loop through each section
                         data=json.loads(data)
                         for section in data['sections']:
                             print(section)
 
-                            # Loop through each visualContainer
+                            # Create a new list of visual containers that don't meet the condition
+                            new_visual_containers = []
                             for visualContainer in section['visualContainers']:
-                                # Check if y is 0 and config contains "parallelogram"
-                                if visualContainer['y'] == 0 and ( "parallelogram" in visualContainer['config'] or "rectangle" in visualContainer['config']) :
-                                    # Remove the visualContainer
-                                    section['visualContainers'].remove(visualContainer)
+                                # Check if y is 0 and config contains "parallelogram" or "rectangle"
+                                if visualContainer['y'] != 0 or ("parallelogram" not in visualContainer['config'] and "rectangle" not in visualContainer['config']):
+                                    new_visual_containers.append(visualContainer)
+
+                            # Replace the old list with the new list
+                            section['visualContainers'] = new_visual_containers
                         
-                        # new layout file
+                        # New layout file
                         with open('updated_file.json', 'w') as f:
                             json.dump(data, f)
                     
