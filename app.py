@@ -70,13 +70,13 @@ if ss:
                                     visualContainer['config'] = json.dumps(config)
 
                                 # Changing z of logo
-                                if visualContainer['y'] == 0 and "Pepsico_4659666136978873.png" in visualContainer['config']:
-                                    visualContainer['z'] = 500
-                                    # Change config
-                                    config = json.loads(visualContainer['config'])
-                                    for layout in config['layouts']:
-                                        layout['position']['z'] = 500
-                                    visualContainer['config'] = json.dumps(config)
+                                # if visualContainer['y'] == 0 and "Pepsico_4659666136978873.png" in visualContainer['config']:
+                                #     visualContainer['z'] = 500
+                                #     # Change config
+                                #     config = json.loads(visualContainer['config'])
+                                #     for layout in config['layouts']:
+                                #         layout['position']['z'] = 500
+                                #     visualContainer['config'] = json.dumps(config)
 
                                 # Changing attributes of groups
                                 if visualContainer['y'] == 0 and "singleVisualGroup" in visualContainer['config']:
