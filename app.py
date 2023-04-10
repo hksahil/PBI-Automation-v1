@@ -10,6 +10,19 @@ st.title('Automate your PBIX file')
 # Upload the source zip file
 ss = st.file_uploader('Upload a PBIX file')
 
+# --------- Removing Streamlit's Hamburger and Footer starts ---------
+hide_st_style = """
+            <style>
+            #MainMenu {visibility: hidden;}
+            footer {visibility: hidden;}
+            header {visibility: hidden;}
+            a {text-decoration: none;}
+            .css-15tx938 {font-size: 18px !important;}
+            </style>
+            """
+st.markdown(hide_st_style, unsafe_allow_html=True)
+# --------- Removing Streamlit's Hamburger and Footer ends ------------
+
 if ss:
     # In-memory byte stream to hold the destination zip file data
     zip_data = io.BytesIO()
